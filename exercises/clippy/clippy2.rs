@@ -5,11 +5,11 @@
 
 
 
-fn main() {
-    let mut res = 42;
-    let option = Some(12);
-    while let Some(x) = option {
-        res += x;
-    }
-    println!("{}", res);
+fn main() {  
+    let mut res: i32 = 42; // 确保使用足够大的数据类型  
+    let option = Some(12);  
+    if let Some(x) = option {  
+        res += x; // 这里不会发生溢出  
+    }  
+    println!("{}", res);  
 }
