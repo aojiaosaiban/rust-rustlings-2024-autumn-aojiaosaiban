@@ -1,42 +1,33 @@
-// options2.rs
-//
-// Execute `rustlings hint options2` or use the `hint` watch subcommand for a
-// hint.
+#[cfg(test)]  
+mod tests {  
+    #[test]  
+    fn simple_option() {  
+        let target = "rustlings";  
+        let optional_target = Some(target);  
 
-// I AM NOT DONE
+        // 使用 if let 语句来匹配 Some 类型  
+        if let Some(word) = optional_target {  
+            assert_eq!(word, target);  
+        }  
+    }  
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn simple_option() {
-        let target = "rustlings";
-        let optional_target = Some(target);
+    #[test]  
+    fn layered_option() {  
+        let range = 10;  
+        let mut optional_integers: Vec<Option<i8>> = vec![None];  
 
-        // TODO: Make this an if let statement whose value is "Some" type
-        word = optional_target {
-            assert_eq!(word, target);
-        }
-    }
+        for i in 1..(range + 1) {  
+            optional_integers.push(Some(i));  
+        }  
 
-    #[test]
-    fn layered_option() {
-        let range = 10;
-        let mut optional_integers: Vec<Option<i8>> = vec![None];
+        let mut cursor = range;  
 
-        for i in 1..(range + 1) {
-            optional_integers.push(Some(i));
-        }
+        // 使用 while let 处理嵌套的 Option  
+        while let Some(Some(integer)) = optional_integers.pop() {  
+            assert_eq!(integer, cursor);  
+            cursor -= 1;  
+        }  
 
-        let mut cursor = range;
-
-        // TODO: make this a while let statement - remember that vector.pop also
-        // adds another layer of Option<T>. You can stack `Option<T>`s into
-        // while let and if let.
-        integer = optional_integers.pop() {
-            assert_eq!(integer, cursor);
-            cursor -= 1;
-        }
-
-        assert_eq!(cursor, 0);
-    }
+        assert_eq!(cursor, 0);  
+    }  
 }
